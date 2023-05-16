@@ -2,15 +2,17 @@
 const numberOfUsers = 55;
 const resultsPerPage = 10;
 const maxContactsPages = 20;
+
+// URL for the API
 const url = "https://randomuser.me/api/?results=" + numberOfUsers;
 let listOfUsers = [];
 
 function formatDate(dateString) {
     const date = new Date(dateString);
     const formattedDate = date.toLocaleDateString('en-US', {
-    month: '2-digit',
-    day: '2-digit',
-    year: '2-digit'
+        month: '2-digit',
+        day: '2-digit',
+        year: '2-digit'
     });
 
     return formattedDate; 
@@ -45,10 +47,9 @@ window.addEventListener('load', function() {
                 const listItem = document.createElement("li");
                 const link = document.createElement("a");
                 link.addEventListener("click", function() {
-                    console.log(this.textContent);
                     loadContacts((this.textContent - 1) * resultsPerPage, this.textContent * resultsPerPage - 1);
                 });
-                link.textContent = i;
+                link.textContent = i; // set the text of the link to the page number
                 listItem.appendChild(link);
                 paginationList.appendChild(listItem);
             }
